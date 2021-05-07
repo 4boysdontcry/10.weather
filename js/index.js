@@ -1,6 +1,6 @@
 /* 
-kAKAO: 46ad6c8773cc6a28980b95e7eb75f88e
-
+kAKAO: 71be89f4c8c605194c1e47132ee7cef3
+openweathermap.com icon: http://openweathermap.org/img/wn/10d@2x.png
 */
 
 
@@ -34,7 +34,7 @@ $(function() {
 
 
 	function initBg() {
-		var d = new Date('2021-05-07 03:33:33');
+		var d = new Date();
 		time = d.getHours();
 		timeDivision = 
 		(time >= 2 	&& time < 6	) ? 1 : 
