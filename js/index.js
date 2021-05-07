@@ -1,35 +1,40 @@
 /* 
-카카오 - 71be89f4c8c605194c1e47132ee7cef3
+kAKAO: 46ad6c8773cc6a28980b95e7eb75f88e
 
 */
+
 
 $(function() {
 
 	/*************** 글로벌 설정 *****************/
+	var map;	// kakao 지도 객체
 	var time;
 	var timeDivision;
+	var mapCenter = { lat: 35.80, lon: 127.55 }
 	var weatherIcon = {
 		i01: 'bi-brightness-high',
 		i02: 'bi-cloud-sun',
 		i03: 'bi-cloud',
 		i04: 'bi-clouds',
-		i05: 'bi-cloud-rain-heavy',
-		i06: 'bi-cloud-drizzle',
-		i07: 'bi-cloud-lightning',
-		i08: 'bi-cloud-snow',
-		i09: 'bi-cloud-haze',
+		i09: 'bi-cloud-rain-heavy',
+		i10: 'bi-cloud-drizzle',
+		i11: 'bi-cloud-lightning',
+		i13: 'bi-cloud-snow',
+		i50: 'bi-cloud-haze',
 	}
 
 	var $bgWrapper = $('.bg-wrapper');
+	var $map = $('#map');
 
 
 
 	/*************** 사용자 함수 *****************/
-		initBg();
-    initMap();
+	initBg();
+	initMap();
+
 
 	function initBg() {
-		var d = new Date();
+		var d = new Date('2021-05-07 03:33:33');
 		time = d.getHours();
 		timeDivision = 
 		(time >= 2 	&& time < 6	) ? 1 : 
@@ -42,25 +47,26 @@ $(function() {
 		$bgWrapper.addClass('active'+timeDivision);
 	}
 
-  function initMap(){
-    var container = document.getElementById('map');
-    var options = {
-      center: new kakao.maps.LatLng(36.192809, 127.559555),
-      level: 13,
-      draggable: false,
-      zoomable: false,
-    };
-
-    var map = new kakao.maps.Map(container, options);
-    map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
-  }
-
-
-	/*************** 이벤트 등록 *****************/
-
-
-
+	function initMap() {
+		var options = {
+			center: new kakao.maps.LatLng(mapCenter.lat, mapCenter.lon),
+			level: 13,
+			draggable: false,
+			zoomable: false,
+		};
+		map = new kakao.maps.Map($map[0], options);
+		map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
+	}
+	
 	/*************** 이벤트 콜백 *****************/
+	function onResize() {
+		var windowHeight = $(window).innerHeight();
+		var lat = (windowHeight > 800 || windowHeight < 600) ? mapCenter.lat : mapCenter.lat + 1;
+		map.setCenter(new kakao.maps.LatLng(lat, mapCenter.lon));
+		map.setLevel(windowHeight > 800 ? 13 : 14);
+	}
 
-
+	
+	/*************** 이벤트 등록 *****************/
+	$(window).resize(onResize);
 });
