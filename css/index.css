@@ -29,6 +29,7 @@ html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 .bg-wrap.bg2 {bottom: 80px; left: -120px; width: 250px; font-size: 250px;  opacity: .1;}
 .bg-wrap.bg3 {bottom: -30px; right: 30%; width: 180px; font-size: 180px;  opacity: .05;}
 
+
 .stage-wrapper {position: absolute; z-index: 1; top: 0; left: 0; width: 100%; height: 100vh;}
 .wrapper {max-width: 1168px; height: 100%; margin: auto; position: relative; display: flex; flex-direction: column;}
 
@@ -49,7 +50,7 @@ html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 
 
 /********************** Map *********************/
-.map-wrapper {width: 49%; height: 100%; border: 1px solid red;}
+.map-wrapper {width: 49%; height: 100%; border: 1px solid yellowgreen; }
 .map-wrapper #map {width: 100%; height: 100%;}
 
 
@@ -67,7 +68,7 @@ html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 
 @media (max-width: 991px) {
 	.weather-wrapper {width: 39%;}
-  .map-wrapper {width: 59%;}
+	.map-wrapper {width: 59%;}
 }
 
 @media (max-width: 767px) {
@@ -77,8 +78,8 @@ html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 
 	.header-wrapper h1.title {font-size: 3em;}
 
-  .weather-wrapper {width: 100%;}
-  .map-wrapper {display: none;}
+	.weather-wrapper {width: 100%;}
+	.map-wrapper {display: none;}
 }
 
 @media (max-width: 575px) {
