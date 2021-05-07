@@ -30,7 +30,6 @@ $(function() {
 
 	/*************** 사용자 함수 *****************/
 	initBg();
-  initCity();
 	initMap();
 
 
@@ -57,23 +56,25 @@ $(function() {
 		};
 		map = new kakao.maps.Map($map[0], options);
 		map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
-    // 윈도우 사이즈가 변경될때 지도 중심 맞추기
+
+		// 윈도우 사이즈가 변경될 때 지도 중심 맞추기
 		$(window).resize(onResize).trigger('resize');
-    // 도시정보 가져오기
-    // $.get('../json/city.json', onGetCity)
+		
+		// 도시정보 가져오기
+		// $.get('../json/city.json', onGetCity);
 	}
 	
 	/*************** 이벤트 콜백 *****************/
-  function onGetCity(r){
-    var position = new kakao.maps.LatLng(37.49887, 127.026581);  
-    var customOverlay = new kakao.maps.CustomOverlay({
-        position: position,
-        content: content,
-        xAnchor: 0.3,
-        yAnchor: 0.91
-    });
-    customOverlay.setMap(map);
-  }
+	function onGetCity(r) {
+		var position = new kakao.maps.LatLng(37.49887, 127.026581);  
+		var customOverlay = new kakao.maps.CustomOverlay({
+				position: position,
+				content: content,
+				xAnchor: 0.3,
+				yAnchor: 0.91
+		});
+		customOverlay.setMap(map);
+	}
 
 	function onResize() {
 		var windowHeight = $(window).innerHeight();
@@ -84,9 +85,6 @@ $(function() {
 	
 	
 	/*************** 이벤트 등록 *****************/
-
-
-
 });
 
 
