@@ -57,6 +57,7 @@
 	var arr3 = arr.concat(arr2);
 	console.log(arr3, arr, arr2);
 
+  // console.clear();
 
 	/* 규칙이 있는 문자열을 배열로 전환 - 문자열.split() <- 문자열메서드 */
 	var str = 'A,B,C,D,E';
@@ -76,13 +77,11 @@
 	/* 배열을 규칙이 있는 문자열로 전환 - join() */
 	var arr = [1, 2, 3, 4, 5];
 	var str = arr.join('*');
-	console.clear();
 	console.log(str);
 
-	// 주문상품 배열 -> 문자열
-	// 숙제(8교시)
-	
-
+	// Quiz! 주문상품 배열 -> 문자열
+  var str2 = order2.join('^');
+	console.log(str2)
 
 	/* 배열의 정렬 - sort(), reverse() */
 	var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
