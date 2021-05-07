@@ -1,0 +1,83 @@
+/* 
+  AM 02 ~ 06 (active1)
+  AM 06 ~ 10 (active2)
+  PM 10 ~ 14 (active3)
+  PM 14 ~ 18 (active4)
+  PM 18 ~ 22 (active5)
+  PM 22 ~ 02 (active6)
+*/
+
+/********************** Global *********************/
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@300&family=Sunflower:wght@300;500&display=swap');
+/* font-family: 'Do Hyeon', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
+font-family: 'Sunflower', sans-serif; */
+
+html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
+
+/********************** Wrapper *********************/
+.bg-wrapper {position: relative; width: 100%; min-height: 100vh; overflow: hidden;}   /* 앱 제작시 거의 이렇게 설정함 */
+.bg-wrapper.active1 {background-image: linear-gradient(#0c0075, #0b1025);}
+.bg-wrapper.active2 {background-image: linear-gradient(#a9caff, #ffc6a5);}
+.bg-wrapper.active3 {background-image: linear-gradient(#8aceff, #b4ff9b);}
+.bg-wrapper.active4 {background-image: linear-gradient(#eb9358, #97c220);}
+.bg-wrapper.active5 {background-image: linear-gradient(#2a2093, #25c4a1);}
+.bg-wrapper.active6 {background-image: linear-gradient(#20779c, #1f062d);}
+
+.bg-wrap {background-repeat: no-repeat; opacity: .3; background-size: 100% auto; position: absolute; color: #fff;}
+.bg-wrap.bg1 {top: 16px; right: 16px; width: 200px; font-size: 200px; opacity: .2;}
+.bg-wrap.bg2 {bottom: 80px; left: -120px; width: 250px; font-size: 250px;  opacity: .1;}
+.bg-wrap.bg3 {bottom: -30px; right: 30%; width: 180px; font-size: 180px;  opacity: .05;}
+
+.stage-wrapper {position: absolute; z-index: 1; top: 0; left: 0; width: 100%; height: 100vh;}
+.wrapper {max-width: 1168px; height: 100%; margin: auto; position: relative; display: flex; flex-direction: column;}
+
+
+/********************** Header *********************/
+.header-wrapper {flex-grow: 0;}
+.header-wrapper h1.title {color: #fff; font-size: 4em; font-family: 'Do Hyeon', sans-serif; letter-spacing: -.075em; display: flex; justify-content: center; margin-top: 1em;}
+.header-wrapper h1.title > span {font-family: 'Noto Sans KR', sans-serif; font-size: .875em; margin-top: -.0625em; margin-right: .25em; opacity: .75;}
+.header-wrapper::after {display: block; content: ''; width: 40px; height: 3px; background-color: rgba(255, 255, 255, .5); margin: auto;}
+
+
+/********************** container-wrapper *********************/
+.container-wrapper {margin-top: 2em; display: flex; justify-content: space-between; flex-grow: 1;}
+
+
+/********************** Weather *********************/
+.weather-wrapper {width: 49%;}
+
+
+/********************** Map *********************/
+.map-wrapper {width: 49%; height: 100%; border: 1px solid yellowgreen;}
+.map-wrapper #map {height: 90%; border: 1px solid red;}
+
+
+
+
+
+/********************** 반응형 설정 *********************/
+@media (max-width: 1399px) {
+	
+}
+
+@media (max-width: 1199px) {
+	.wrapper {width: calc(100% - 32px); margin: 0 16px;}
+}
+
+@media (max-width: 991px) {
+	
+}
+
+@media (max-width: 767px) {
+	.bg-wrap.bg1 {top: 16px; right: 16px; width: 150px; font-size: 150px;}
+	.bg-wrap.bg2 {bottom: 80px; left: -40px; width: 120px; font-size: 120px;}
+	.bg-wrap.bg3 {bottom: -10px; right: 10%; width: 80px; font-size: 80px;}
+
+	.header-wrapper h1.title {font-size: 3em;}
+}
+
+@media (max-width: 575px) {
+	.header-wrapper h1.title {font-size: 2em;}
+	
+}
