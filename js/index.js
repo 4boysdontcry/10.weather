@@ -10,7 +10,7 @@ $(function() {
 	var map;	// kakao 지도 객체 (카카오지도 전체를 담고있는 객체)
 	var time;
 	var timeDivision;
-	var mapCenter = { lat: 35.80, lon: 127.55 }
+	var mapCenter = { lat: 35.80, lon: 128.7 }
 	var weatherIcon = {
 		i01: 'bi-brightness-high',
 		i02: 'bi-cloud-sun',
@@ -51,7 +51,7 @@ $(function() {
 		var options = {
 			center: new kakao.maps.LatLng(mapCenter.lat, mapCenter.lon),
 			level: 13,
-			draggable: false,
+			draggable: true,
 			zoomable: false,
 		};
 		map = new kakao.maps.Map($map[0], options);
@@ -64,29 +64,54 @@ $(function() {
 		$.get('../json/city.json', onGetCity);
 	}
 	
+
 	/*************** 이벤트 콜백 *****************/
 	function onGetCity(r) {
-		// console.log(r.city[5].name);  콘솔창에 '하남' 찍기
-		r.city.forEach(function(v, i){
+		r.city.forEach(function(v, i) {
 			var customOverlay = new kakao.maps.CustomOverlay({
 					position: new kakao.maps.LatLng(v.lat, v.lon),
-					content: '<div class="co-wrapper">'+v.name+'</div>',
+					content: '<div class="co-wrapper '+(v.minimap ? '' : 'minimap')+'">'+v.name+'</div>',
 					xAnchor: v.anchor ? v.anchor.x : 0.25,
-					yAnchor: v.anchor ? v.anchor.y : 0.65
+					yAnchor: v.anchor ? v.anchor.y : 0.65,
 			});
 			customOverlay.setMap(map);
 		});
+		$('.co-wrapper').mouseenter(onOverlayOver);
+		$('.co-wrapper').mouseleave(onOverlayLeave);
+		$('.co-wrapper').mouseclick(onOverlayClick);
+		$(window).trigger('resize');
 	}
 
 	function onResize() {
 		var windowHeight = $(window).innerHeight();
 		var lat = (windowHeight > 800 || windowHeight < 600) ? mapCenter.lat : mapCenter.lat + 1;
 		map.setCenter(new kakao.maps.LatLng(lat, mapCenter.lon));
-		map.setLevel(windowHeight > 800 ? 13 : 14);
+		if(windowHeight < 800) {
+			$('.minimap').hide();
+			$('.map-wrapper .co-wrapper').addClass('active')
+			map.setLevel(14);
+		}
+		else {
+			map.setLevel(13);
+			$('.minimap').show();
+			$('.map-wrapper .co-wrapper').removeClass('active')
+		}
 	}
 	
 	
 	/*************** 이벤트 등록 *****************/
+	function onOverlayOver(){
+		
+	}
+
+	function onOverlayLeave(){
+
+	}
+
+	function onOverlayClick(){
+
+	}
+
 });
 
 
