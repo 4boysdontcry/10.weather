@@ -28,15 +28,14 @@
     $.get(url , data, onLoad);
     
     // ($.ajax) - 오류를 찾아내기 용이함
-    $.ajax(url, {
-        type: 'GET',
-        data: data,
-        success: onLoad,
-        error: onError
-    })
+    // $.ajax(url, {type: 'GET', data: data, success: onLoad, error: onError})
 
     function onLoad(r){
-        console.log(r)
+        console.log(r);
+        console.log(r.main);
+        console.log(r.main.temp);
+        console.log(r.weather[0]);
+        console.log(r.weather[0].icon);
     }
     function onError(xhr, status, msg){
         console.log(xhr, status, msg)
