@@ -71,18 +71,13 @@ $(function() {
 	function onGetCity(r) {
 		r.city.forEach(function(v, i) {
 			var content = '';
-			content += '<div class="co-wrapper '+(v.minimap ? '' : 'minimap')+'">';
+			content += '<div class="co-wrapper '+(v.minimap ? '' : 'minimap')+'" data-lat="'+v.lat+'" data-lon="'+v.lon+'">';
 			content += '<div class="co-wrap">';
 			content += '<div class="icon-wrap">';
-			content += '<img src="'+defPath+'" class="w-100">';
+			content += '<img src="'+defPath+'" class="icon w-100">';
 			content += '</div>';
 			content += '<div class="temp-wrap">';
-			content += '<div class="temp-max">';
-			content += '<span></span>℃';
-			content += '</div>';
-			content += '<div class="temp-min">';
-			content += '<span></span>℃';
-			content += '</div>';
+			content += '<span class="temp"></span>℃';
 			content += '</div>';
 			content += '</div>';
 			content += v.name;
@@ -124,8 +119,21 @@ $(function() {
 	}
 
 	function onOverlayOver(){
-		$(this).find('.co-wrap').css('display', 'flex')
-		$(this).parent().css('z-index', '1')
+		$(this).find('.co-wrap').css('display', 'flex');
+		$(this).parent().css('z-index', '1');
+		var lat = $(this).data('lat');
+		var lon = $(this).data('lon');
+		$.get('//api.openweathermap.org/data/2.5/weather',{
+			lat: lat, lon: lon,
+			units: 'metric',
+			appid: 'b643d1c36ef820780490b2d990f49c60'
+		}, function(r){
+			console.log(r);
+			console.log(r.main.temp);
+			console.log(r.weather[0].icon);
+			$(this).find('.temp').text(r.main.temp);
+			$(this).find('.icon').attr('src', iconPath + r.weather[0].icon + '@2x.png');		// ajax 통신
+		}.bind(this));
 	}
 
 	function onOverlayLeave(){
