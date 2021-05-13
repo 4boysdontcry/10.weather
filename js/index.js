@@ -200,6 +200,8 @@ $(function () {
 		data.lat = $(this).find('.co-wrapper').data('lat'); // data-lat
 		data.lon = $(this).find('.co-wrapper').data('lon'); // data-lon
 		$.get(dailyURL, data, onToday);
+		$('.co-wrapper').removeClass('click')
+		$(this).find('.co-wrapper').addClass('click')
 	}
 
 	function onOverlayEnter() {
