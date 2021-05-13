@@ -72,9 +72,10 @@ $(function () {
 			level: 13,
 			draggable: false,
 			zoomable: false,
+			disableDoubleClickZoom: true
 		};
 		map = new kakao.maps.Map($map[0], options);
-		map.addOverlayMapTypeId(kakao.maps.MapTypeId.ROADMAP); // 지형도 붙이기
+		map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN); // 지형도 붙이기
 
 		// 윈도우 사이즈가 변경될 때 지도 중심 맞추기
 		$(window).resize(onResize).trigger('resize');
@@ -89,7 +90,7 @@ $(function () {
 		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
 		function onSuccess(r) {
-			var data = cloneObject(sendData);
+			var data = cloneObject(sendData);		// cloneObject: util.js에 있음 (JSON을 JS로 변경해줌)
 			data.lat = r.coords.latitude;
 			data.lon = r.coords.longitude;
 			$.get(dailyURL, data, onToday);
@@ -106,8 +107,8 @@ $(function () {
 	}
 
 	// openweathermap의 icon 가져오기
-	function getIcon(icon) {
-		return 'https://openweathermap.org/img/wn/' + icon + '@2x.png';
+	function getIcon(icon, notZoom) {
+		return 'https://openweathermap.org/img/wn/' + icon + (notZoom ? '.png' : '@2x.png');
 	}
 
 	/*************** 이벤트 콜백 *****************/
@@ -149,31 +150,45 @@ $(function () {
 
 	function onWeekly(r) {
 		console.log(r);
+		var html = '';
+		var $stage = $('.weather-wrapper .slide-stage');
 		var $slick = $('.weather-wrapper .slide-wrapper');
 		var $btPrev = $('.weather-wrapper .weekly-wrapper .bt-slide.left');
 		var $btNext = $('.weather-wrapper .weekly-wrapper .bt-slide.right');
 		var slick = {
-			autoplay: true,
-			autoplaySpeed: 2000,
-			infinite: true,
-			touchThreshold: 10,
+			infinite: false,
 			arrows: false,
-			dots: false,
 			speed: 500,
-			slidesToShow: 5,
-			slidesToScroll: 1,
-			responsive: [
-				{
-					breakpoint: 1200,
-					settings: {slidesToShow: 3}
-				}
-			]
+			slidesToShow: 4,
+			slidesToScroll: 4,
+			responsive: [{
+				breakpoint: 1200,
+				settings: { slidesToShow: 3 }
+			}]
 		}
-		$('.weather-wrapper .slide-wrapper').slick(slick);
+		
+		r.list.forEach(function(v) {
+			html += '<div class="slide">';
+			html += '<div class="date-wrap">'+moment(v.dt*1000).format('D일 h시')+'</div>';
+			html += '<div class="img-wrap">';
+			html += '<img src="'+getIcon(v.weather[0].icon, true)+'" alt="icon" class="mw-100">';
+			html += '</div>';
+			html += '<div class="temp-wrap">';
+			html += '<div class="temp"><span>'+v.main.temp+'</span><i><sup>o</sup>C</i></div>';
+			html += '<div class="temp-feel">체감: <span>'+v.main.feels_like+'</span><i><sup>o</sup>C</i>';
+			html += '</div>';
+			html += '</div>';
+			html += '</div>';
+		});
+		if($('.slick-list').length) $slick.slick('unslick');
+		$slick.html(html);
+		$slick.slick(slick);
 		makeSlickButton($slick, $btPrev, $btNext);
 	}
+	
 
 	function onGetCity(r) {
+		// console.log(r.city.length)
 		r.city.forEach(function (v, i) {
 			var content = '';
 			content += '<div class="co-wrapper ' + (v.minimap ? '' : 'minimap') + '" data-lat="' + v.lat + '" data-lon="' + v.lon + '">';
@@ -197,6 +212,9 @@ $(function () {
 			$(customOverlay.a).mouseenter(onOverlayEnter);
 			$(customOverlay.a).mouseleave(onOverlayLeave);
 			$(customOverlay.a).click(onOverlayClick);
+
+			var html = '<li class="city '+(v.title ? 'title' : '')+'">'+v.name+'</li>';
+			$('.weather-wrapper .city-wrap').append(html);
 		});
 		$(window).trigger('resize');
 	}
@@ -214,6 +232,7 @@ $(function () {
 			$('.minimap').show();
 			$('.map-wrapper .co-wrapper').removeClass('active');
 		}
+		$('.weather-wrapper .city-wrapper').hide();
 	}
 
 	function makeSlickButton($slick, $prev, $next) {
@@ -240,6 +259,7 @@ $(function () {
 		$('.co-wrapper').removeClass('click');
 		$(this).find('.co-wrapper').addClass('click');
 		$.get(dailyURL, data, onToday);
+		$.get(weeklyURL, data, onWeekly);
 	}
 
 	function onOverlayEnter() {
@@ -262,5 +282,9 @@ $(function () {
 		$(this).css('z-index', 0);
 		$(this).find('.co-wrap').css('display', 'none');
 	}
+
+	$('.bt-city').click(function(){
+		$('.weather-wrapper .city-wrapper').toggle();
+	});
 
 });
