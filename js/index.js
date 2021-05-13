@@ -74,7 +74,7 @@ $(function () {
 			zoomable: false,
 		};
 		map = new kakao.maps.Map($map[0], options);
-		map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN); // 지형도 붙이기
+		map.addOverlayMapTypeId(kakao.maps.MapTypeId.ROADMAP); // 지형도 붙이기
 
 		// 윈도우 사이즈가 변경될 때 지도 중심 맞추기
 		$(window).resize(onResize).trigger('resize');
