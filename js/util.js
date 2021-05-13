@@ -1,37 +1,39 @@
 /* 
-&& (and 연산자) - 둘다 true 일때만 true를 반환. / 그 외에는 false를 반환
-|| (or 연산자) - 둘 중 하나만 true여도 true를 반환. / 둘다 flase일때만 false를 반환
+&& (AND연산자) - 둘 다 true일때만 true를 반환 / 그 외에는 false를 반환
+|| (OR 연산자) - 둘 중 하나만 true여도 true를 반환 / 둘 다 false일때만 false를 반환
 */
 
 
-/****************** mobile-check ********************/
+/****************** mobile check ********************/
 var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 
 
-/****************** reg.EXP ********************/
-function validEmail(v){
-	// email 정규표현식
+/****************** regExp ********************/
+// Email 정규표현식
+function validEmail(v) {
 	var emailRegExp = /([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i;
-	return(v.match(emailRegExp) != null) ? true : false
+	return (v.match(emailRegExp) !== null) ? true : false
 }
 
-function validPass(v){
-	// 숫자, 문자, 특수문자 표함한 8~16자리 패스워드 정규표현식
-	var passRegex = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-	return(v.match(passRegExp) != null) ? true : false
+// 숫자, 문자, 특수문자를 포함한 8 ~ 16자리 정규표현식
+function validPass(v) {
+	var passRegExp = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+	return (v.match(passRegExp) !== null) ? true : false
 }
 
-function validMobile(v){
-	// 핸드폰번호 정규식
+// 핸드폰번호 정규식
+function validMobile(v) {
 	var mobileRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
-	return(v.match(mobileRegExp) != null) ? true : false
+	return (v.match(mobileRegExp) !== null) ? true : false
 }
 
-function validPhone(v){
-	// 일반 전화번호 정규식
+//일반 전화번호 정규식
+function validPhone(v) {
 	var phoneRegExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
-	return(v.match(phoneRegExp) != null) ? true : false
+	return (v.match(phoneRegExp) !== null) ? true : false
 }
+
 
 
 /****************** Array.sort() ********************/
@@ -172,10 +174,8 @@ function getSwiper(el, opt) {
 }
 
 
-
-/*************** Object DeepCopy *****************/
-function cloneObject(obj){
-	// var props = {...slick};		//ES6 DeepCopy
-	// var options = JSON.parse(JSON.stringify(slick));		//ES5 DeepCopy
-	return JSON.parse(JSON.stringify(obj))
+/*************** Object Deepcopy *****************/
+function cloneObject(obj) {
+	// var props = {...slick}; // ES6 DeepCopy
+	return JSON.parse(JSON.stringify(obj));
 }

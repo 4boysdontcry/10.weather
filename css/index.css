@@ -15,10 +15,11 @@ font-family: 'Sunflower', sans-serif; */
 
 html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 
+
 /********************** Wrapper *********************/
 .bg-wrapper {position: relative; width: 100%; min-height: 100vh; overflow: hidden;}   /* 앱 제작시 거의 이렇게 설정함 */
 .bg-wrapper.active1 {background-image: linear-gradient(#0c0075, #0b1025);}
-.bg-wrapper.active2 {background-image: linear-gradient(#a9caff, #ffc6a5);}
+.bg-wrapper.active2 {background-image: linear-gradient(#ffc6a5, #a9caff);}
 .bg-wrapper.active3 {background-image: linear-gradient(#8aceff, #b4ff9b);}
 .bg-wrapper.active4 {background-image: linear-gradient(#e69a68, #cee983);}
 .bg-wrapper.active5 {background-image: linear-gradient(#2a2093, #25c4a1);}
@@ -53,10 +54,12 @@ html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 .weather-wrapper .title-wrap h4.time {font-size: .75em; font-weight: lighter;}
 
 .weather-wrapper .summary-wrap {font-size: 2em;}
+.weather-wrapper .summary-wrap > :first-child {font-size: 1em;}
+.weather-wrapper .summary-wrap > :last-child {font-size: .875em;}
 
 .weather-wrapper .temp-wrap {font-weight: lighter;}
 .weather-wrapper .temp-wrap .temp {font-size: 1.5em;}
-.weather-wrapper .temp-wrap .temp-desc .gap {font-size: 1.25em; font-weight: normal;}
+.weather-wrapper .temp-wrap .temp-desc .gap > span {font-size: 1.25em; font-weight: normal;}
 .weather-wrapper .temp-wrap .temp span {font-weight: normal; font-size: 2em;}
 .weather-wrapper .temp-wrap .temp-gap span {font-weight: normal; font-size: 1.25em;}
 
@@ -65,18 +68,19 @@ html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 .map-wrapper {width: 49%; height: 100%;}
 .map-wrapper #map {width: 100%; height: 100%;}
 
-.map-wrapper .co-wrapper {background-color: rgba(54, 161, 223, .6); color: #fff; padding: .325em; font-size: .875em; line-height: 1; letter-spacing: -0.05em; border-radius: 3px; cursor: pointer;
-	position: relative;}
+.map-wrapper .co-wrapper {background-color: rgba(3, 19, 54, 0.9); color: #fff; padding: .325em; font-size: .875em; line-height: 1; letter-spacing: -0.05em; border-radius: 3px; cursor: pointer; position: relative;}
 .map-wrapper .co-wrapper.active {font-size: .75em;}
-.map-wrapper .co-wrapper:hover {background-color: rgba(54, 161, 223, 1);}
-.map-wrapper .co-wrapper .co-wrap {position: absolute; background-color: #9b9b9b; color: #031b47; display: none; align-items: center; padding-right: 6px; border-radius: 3px; top: 40%;
-	right: -8px; transform: translate(100%, -50%); box-shadow: 0 0 10px rgba(0, 0, 0, .25);}
-.map-wrapper .co-wrapper .co-wrap::after {content: '◀'; display: block; position: absolute; color: #9b9b9b; left: -10px; top: calc(50% - 5px);}
-
+.map-wrapper .co-wrapper:hover {background-color: rgba(9, 52, 145, 0.9);}
+.map-wrapper .co-wrapper .co-wrap {position: absolute; background-color: #c4f1f1; color: #031b47; display: none; justify-content: center; align-items: center; padding-right: 6px; border-radius: 3px; top: 40%; right: -8px; transform: translate(100%, -50%); box-shadow: 0 0 10px rgba(0, 0, 0, .25); min-width: 90px;}
+.map-wrapper .co-wrapper .co-wrap::after {content: '◀'; display: block; position: absolute; color: #c4f1f1; left: -10px; top: calc(50% - 5px);}
 .map-wrapper .co-wrapper .co-wrap.dokdo {left: -8px; right: auto; transform: translate(-100%, -50%);}
-.map-wrapper .co-wrapper .co-wrap.co-wrap.dokdo::after {content: '▶'; left: auto; right: -10px;}
-
+.map-wrapper .co-wrapper .co-wrap.dokdo::after {content: '▶'; left: auto; right: -10px;}
 .map-wrapper .co-wrapper .co-wrap > .icon-wrap {width: 40px;}
+.map-wrapper .co-wrapper .co-wrap > .icon-wrap img {width: 40px;}
+.map-wrapper .co-wrapper .co-wrap > .temp-wrap {}
+
+
+
 
 
 /********************** 반응형 설정 *********************/
