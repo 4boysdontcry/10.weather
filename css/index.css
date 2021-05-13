@@ -55,7 +55,7 @@ html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 .weather-wrapper {width: 49%; background-color: rgba(0, 0, 0, .25); color: #fff; display: flex; flex-direction: column; position: relative;}
 .weather-wrapper .daily-wrapper {display: flex; align-items: center; flex-direction: column; justify-content: center; text-align: center; 
 	flex-grow: 1;}
-.weather-wrapper .daily-wrapper .title-wrap {font-size: 1.5em; margin-bottom: 1em;}
+.weather-wrapper .daily-wrapper .title-wrap {font-size: 1.5em; margin:.5em 0 1em 0;}
 .weather-wrapper .daily-wrapper .title-wrap h3.position {font-size: .875em; font-weight: lighter;}
 .weather-wrapper .daily-wrapper .title-wrap h2.name {font-size: 1.5em; border-bottom: 2px solid #fff; margin-bottom: .25em;}
 .weather-wrapper .daily-wrapper .title-wrap h4.time {font-size: .75em; font-weight: lighter;}
@@ -85,8 +85,9 @@ html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 	overflow: auto; display: none; overflow-y: auto;}
 .weather-wrapper .city-wrap {display: flex; flex-wrap: wrap; overflow-x: hidden;}
 .weather-wrapper .city-wrap .city {width: calc(20% + 1px); padding: .5em 0; border: 1px solid #333; border-right: 1px solid #333; text-align: center;
-	font-size: .875em; margin-top: -1px; margin-right: -1px;}
-.weather-wrapper .city-wrap .city.title {width: 100%; font-size: 1.125em; border: none; padding-top: .75em;}
+	font-size: .875em; margin-top: -1px; margin-right: -1px; cursor: pointer; }
+	.weather-wrapper .city-wrap .city:not(.title):hover {background-color: rgba(153, 235, 119, 0.612);}
+.weather-wrapper .city-wrap .city.title {width: 100%; font-size: 1.125em; border: none; padding-top: .75em; cursor: auto;}
 
 
 /********************** Map *********************/
