@@ -1,6 +1,8 @@
 /* 
 kAKAO: 71be89f4c8c605194c1e47132ee7cef3
 openweathermap.com icon: http://openweathermap.org/img/wn/10d@2x.png
+
+24시간 전 날씨정보: https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=37.56322905592715&lon=126.98987106691214&exclude=&appid=b643d1c36ef820780490b2d990f49c60&units=metric&dt=1620780822
 */
 
 
@@ -24,6 +26,7 @@ $(function() {
 	}
 	var dailyURL = 'https://api.openweathermap.org/data/2.5/weather';
 	var weeklyURL = 'https://api.openweathermap.org/data/2.5/forecast';
+	var yesterdayURL = 'https://api.openweathermap.org/data/2.5/onecall/timemachine';
 	var appid = 'b643d1c36ef820780490b2d990f49c60';
 	var sendData = { appid: appid, units: 'metric'};
 	var defPath = '//via.placeholder.com/40x40/c4f1f1?text=%20';
@@ -36,7 +39,7 @@ $(function() {
 	/*************** 사용자 함수 *****************/
 	initBg();
 	initMap();
-
+	initDaily();
 
 	function initBg() {
 		var d = new Date();
@@ -67,6 +70,21 @@ $(function() {
 		
 		// 도시정보 가져오기
 		$.get('../json/city.json', onGetCity);
+	}
+
+	function initDaily() {
+		navigator.geolocation.getCurrentPosition(onSuccess, onError)
+		function onSuccess(r) {
+			var lat = r.coords.latitude;
+			var lon = r.coords.longitude;
+			sendData.lat = lat;
+			sendData.lon = lon;
+			$.get(dailyURL, );
+			$.get(yesterdayURL, );
+		}
+		function onError(err) {
+			console.log(err);
+		}
 	}
 	
 	// openweathermap의 아이콘 가져오기
