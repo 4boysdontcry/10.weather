@@ -4,7 +4,7 @@ openweathermap.com icon: https://openweathermap.org/img/wn/10d@2x.png
 
 24시간 전 날씨정보: https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=37.56322905592715&lon=126.98987106691214&exclude=&appid=b643d1c36ef820780490b2d990f49c60&units=metric&dt=1620780822
 
-	var appid = 'b643d1c36ef820780490b2d990f49c60';
+	openweathermap appid = 'b643d1c36ef820780490b2d990f49c60';
 */
 
 
