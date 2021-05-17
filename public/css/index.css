@@ -17,7 +17,7 @@ html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 
 
 /********************** Wrapper *********************/
-.bg-wrapper {position: relative; width: 100%; min-height: 100vh; overflow: hidden;}   /* 앱 제작시 거의 이렇게 설정함 */
+.bg-wrapper {position: fixed; width: 100%; height: 100vh; overflow: hidden;}   /* 앱 제작시 거의 이렇게 설정함 */
 .bg-wrapper.active1 {background-image: linear-gradient(#0c0075, #0b1025);}
 .bg-wrapper.active2 {background-image: linear-gradient(#ffc6a5, #a9caff);}
 .bg-wrapper.active3 {background-image: linear-gradient(#8aceff, #b4ff9b);}
@@ -30,7 +30,7 @@ html,body {font-family: 'Sunflower', sans-serif; font-size: 16px;}
 .bg-wrap.bg2 {bottom: 80px; left: -120px; width: 250px; font-size: 250px;  opacity: .1;}
 .bg-wrap.bg3 {bottom: -30px; right: 30%; width: 180px; font-size: 180px;  opacity: .05;}
 
-.stage-wrapper {position: absolute; z-index: 1; top: 0; left: 0; width: 100%; height: 100vh;}
+.stage-wrapper {position: absolute; z-index: 1; top: 0; left: 0; width: 100%; height: 100vh; padding-bottom: 2em;}
 .wrapper {max-width: 1168px; height: 100%; margin: auto; position: relative; display: flex; flex-direction: column;}
 
 .bt-slide {color: rgba(255, 255, 255, .3); position: absolute; top: calc(50% - .5em); z-index: 90; font-size: 2em; cursor: pointer;}
