@@ -208,7 +208,7 @@ $(function () {
 				var customOverlay = new kakao.maps.CustomOverlay({
 					position: new kakao.maps.LatLng(v.lat, v.lon),
 					content: content,
-					xAnchor: v.anchor ? v.anchor.x : 0.25,
+					xAnchor: v.anchor ? v.anchor.x : 0.25,		// 도시 이름 위치조정
 					yAnchor: v.anchor ? v.anchor.y : 0.65,
 				});
 				customOverlay.setMap(map);
